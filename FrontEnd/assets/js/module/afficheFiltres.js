@@ -30,16 +30,12 @@ export function afficheFiltres(listeCategories, position) {
             // retire la classe 'active' sur le bouton qui le posséde
             document.querySelector(".active").classList.remove("active");
             // ajout de la classe 'active' sur le btn clické
-            event.target.classList.add("active")
+            event.target.classList.add("active");
             // on recupere l'identifiant de la catégorie grace l'attribut data-categorie
-            let idCategorie = event.target.dataset.categorie;
-            console.log(idCategorie)
+            let id = event.target.dataset.categorie;
+            console.log(id)
         });
     });
-
-    console.log(idCategorie)
-
-    return 0
 }
 
 
