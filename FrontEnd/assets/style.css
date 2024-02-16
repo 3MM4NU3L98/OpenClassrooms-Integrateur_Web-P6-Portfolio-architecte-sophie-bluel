@@ -186,3 +186,35 @@ footer nav ul {
 	margin: 2em
 }
 
+/* style des btnFiltres */
+
+#filtres {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 40px;
+}
+
+#filtres .btnFiltre {
+	border-radius: 60px;
+	border: 1px solid #1D6154;
+	color: #1D6154;
+	min-width: 70px;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 0 15px;
+}
+
+#filtres .active {
+	background: #1D6154;
+	color: #FFF;
+	
+}
+
+
+
+
