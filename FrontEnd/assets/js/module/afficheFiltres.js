@@ -34,6 +34,7 @@ export function afficheFiltres(listeCategories, position) {
             // on recupere l'identifiant de la catégorie grace l'attribut data-categorie
             let id = event.target.dataset.categorie;
             console.log(id)
+            return id
         });
     });
 }
