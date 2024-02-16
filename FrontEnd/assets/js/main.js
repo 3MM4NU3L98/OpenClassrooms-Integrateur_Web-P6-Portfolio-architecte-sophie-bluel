@@ -1,28 +1,30 @@
-import { host, galeriePortefolio, filtresPortefolio } from "./module/const.js";
-import { afficheFiltres } from "./module/afficheFiltres.js";
+import { travaux, categoriesTravaux, host, galeriePortefolio, filtresPortefolio, } from "./module/const.js";
+import { afficheHomePage } from "./module/afficheHomePage.js";
 import { afficheGalerie } from "./module/afficheGalerie.js";
 
-console.log(`${host}/works`)
-// Récupération des travaux depuis l'API en JSON
-const travaux = await fetch(`${host}/works`).then(travaux => travaux.json());
-// Récupération des catégories de travaux depuis l'API en JSON
-const categoriesTravaux = await fetch(`${host}/categories`).then(categoriesTravaux => categoriesTravaux.json());
-
-
+//console.log(`${host}/works`)
 console.log(travaux)
 console.log(categoriesTravaux)
+// affiche la page d'accueil
 
+
+afficheHomePage();
+
+
+
+
+//
+//
 let travauxAfficher = travaux;
 
-let choixCategories = afficheFiltres(categoriesTravaux, filtresPortefolio);
-console.log(choixCategories)
+let choixCategories = sessionStorage.getItem("idCategorie");
 
 if (choixCategories !== 0) {
     //  travauxAfficher flitré par choixCatégorie
 } else { }
 
 
-afficheGalerie(travauxAfficher, galeriePortefolio);
+//afficheGalerie(travauxAfficher, galeriePortefolio);
 
 
 

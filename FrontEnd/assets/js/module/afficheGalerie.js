@@ -6,6 +6,9 @@
 
 export function afficheGalerie(galerie, position) {
 
+    // efface tous les photos de la galerie
+    position.innerHTML = "";
+
     // pour chaque élément de galerie
     galerie.forEach(galerieElement => {
 
