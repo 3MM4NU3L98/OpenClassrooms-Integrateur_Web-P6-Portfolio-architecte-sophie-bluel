@@ -14,4 +14,8 @@ export const galeriePortefolio = document.querySelector(".gallery");
 // Récupération de l'élément du DOM qui accueillera le choix du filtre
 export const filtresPortefolio = document.getElementById("filtres")
 
+// Récupération de l'élément du DOM qui selecttionne le menu login
+export const menuLogin = document.getElementById("log")
 
+// Récupération de l'élément du DOM qui selecttionne le main
+export const mainElement = document.querySelector("main")

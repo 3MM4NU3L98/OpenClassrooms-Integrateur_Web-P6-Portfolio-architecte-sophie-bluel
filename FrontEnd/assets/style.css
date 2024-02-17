@@ -48,15 +48,26 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
+	display: flex;
+	flex-direction: column;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background: #FFFEF8;
+	height: 100vh;
+}
+main {
+	flex: 1;
+	align-self: center;
+	max-width: 1140px;
 }
 header {
+	max-width: 1140px;
+	width: 100%;
+	align-self: center;
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
 }
 section {
 	margin: 50px 0
@@ -75,7 +86,6 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
@@ -180,6 +190,11 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+footer {
+	background: #FFF;
+}
+
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
@@ -215,6 +230,74 @@ footer nav ul {
 	
 }
 
+/* style page de connexion */
 
+#loginPage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+
+#loginPage h2 {
+	margin-top: 150px;
+	margin-bottom: 37px;
+}
+
+#loginForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center
+}
+
+#loginPage .form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	margin-bottom: 30px;
+}
+
+#loginPage label {
+	color: #3D3D3D;
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+    
+}
+#idemail, #idpassword {
+	width: 379px;
+	height: 51px;
+	border: none;
+	background: #FFF;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+#loginPage button {
+	width: 179px;
+	height: 36px;
+	margin: 7px 0 28px;
+	border: none;
+	border-radius: 60px;
+	background: #1D6154;
+	color: #FFF;
+	text-align: center;
+	font-family: Syne;
+	font-weight: 700;
+
+
+}
+
+#loginPage button:hover {
+	background: #0E2F28;
+}
+
+#forgotPassword {
+	color: #3D3D3D;
+	font-family: "Work Sans";
+	font-size: 14px;
+	text-decoration-line: underline;
+}
 
 

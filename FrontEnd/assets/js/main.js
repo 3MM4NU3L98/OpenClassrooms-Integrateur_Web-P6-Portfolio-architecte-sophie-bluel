@@ -1,30 +1,15 @@
-import { travaux, categoriesTravaux, host, galeriePortefolio, filtresPortefolio, } from "./module/const.js";
+import { menuLogin } from "./module/const.js";
 import { afficheHomePage } from "./module/afficheHomePage.js";
-import { afficheGalerie } from "./module/afficheGalerie.js";
+import { afficheloginPage } from "./module/afficheloginPage.js"
 
-//console.log(`${host}/works`)
-console.log(travaux)
-console.log(categoriesTravaux)
+
 // affiche la page d'accueil
-
-
 afficheHomePage();
 
+console.log(menuLogin)
+menuLogin.addEventListener("click", () => afficheloginPage());
 
 
-
-//
-//
-let travauxAfficher = travaux;
-
-let choixCategories = sessionStorage.getItem("idCategorie");
-
-if (choixCategories !== 0) {
-    //  travauxAfficher flitré par choixCatégorie
-} else { }
-
-
-//afficheGalerie(travauxAfficher, galeriePortefolio);
 
 
 

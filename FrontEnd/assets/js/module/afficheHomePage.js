@@ -11,7 +11,7 @@ import { afficheGalerie } from "./afficheGalerie.js";
 export function afficheHomePage() {
 
     ////////////// Création des boutons permettant de filter  /////////////// 
-    // création de la balise  
+    // création de la balise div
     const btnFiltre0 = document.createElement("div");
     // ajout du texte dans la balise
     btnFiltre0.innerText = "Tous";
@@ -49,7 +49,6 @@ const ecouteClick = (e) => {
     let idCategorie = parseInt(e.target.dataset.categorie);
     // si idCategorie === 0 alor travauxFiltrer = travaux sinon filtre les traveaux avec idCategorie
     let travauxFiltrer = (idCategorie === 0) ? travaux : travaux.filter(travail => travail.categoryId === idCategorie);
-    console.log(travauxFiltrer)
     // affichage des photos
     afficheGalerie(travauxFiltrer, galeriePortefolio);
 }
