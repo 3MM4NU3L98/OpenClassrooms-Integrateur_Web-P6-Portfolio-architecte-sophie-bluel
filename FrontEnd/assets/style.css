@@ -1,52 +1,19 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/*  Reset  */
+@import './CSS/reset.css';
+/* header */
+@import './CSS/header.css';
+/* section d'introdution */
+@import './CSS/sect_intro.css';
+/* formulaire de contact */
+@import './CSS/form_contact.css';
+/* footer */
+@import './CSS/footer.css';
+/* portfolio */
+@import './CSS/sect_portfolio.css';
+/* page de connexion */
+@import './CSS/page_connexion.css';
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/** end reset css**/
+
 body {
 	display: flex;
 	flex-direction: column;
@@ -61,31 +28,9 @@ main {
 	align-self: center;
 	max-width: 1140px;
 }
-header {
-	max-width: 1140px;
-	width: 100%;
-	align-self: center;
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0;
-}
+
 section {
 	margin: 50px 0
-}
-
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
-}
-
-h1 > span {
-	font-family: 'Work Sans';
-	font-size:10px;
-	letter-spacing: 0.1em;
 }
 
 h2{
@@ -108,176 +53,9 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
-#introduction {
-	display: flex;
-	align-items: center;
-}
-#introduction figure {
-	flex: 1
-}
-#introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
-}
 
-#introduction article {
-	flex: 1
-}
-#introduction h2 {
-	margin-bottom: 1em;
-}
-
-#introduction p {
-	margin-bottom: 0.5em;
-}
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-}
-
-.gallery img {
-	width: 100%;
-
-}
-#contact {
-	width: 50%;
-margin: auto;
-}
-#contact > * {
-	text-align: center;
-
-}
-#contact h2{
-	margin-bottom: 20px;
-}
-#contact form {
-	text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
-}
-
-#contact input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-#contact label {
-	margin: 2em 0 1em 0;
-}
-#contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-input[type="submit"]{
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
-}
-
-footer {
-	background: #FFF;
-}
-
-
-footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
-}
-
-/* style des btnFiltres */
-
-#filtres {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: 10px;
-	margin-bottom: 40px;
-}
-
-#filtres .btnFiltre {
-	border-radius: 60px;
-	border: 1px solid #1D6154;
-	color: #1D6154;
-	min-width: 70px;
-	height: 37px;
-	line-height: 37px;
-	text-align: center;
-	font-size: 16px;
-	font-weight: 700;
-	padding: 0 15px;
-}
-
-#filtres .active {
-	background: #1D6154;
-	color: #FFF;
-	
-}
-
-/* style page de connexion */
-
-#loginPage {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-}
-
-#loginPage h2 {
-	margin-top: 150px;
-	margin-bottom: 37px;
-}
-
-#loginForm {
-	display: flex;
-	flex-direction: column;
-	align-items: center
-}
-
-#loginPage .form-group {
-	display: flex;
-	flex-direction: column;
-	gap: 7px;
-	margin-bottom: 30px;
-}
-
-#loginPage label {
-	color: #3D3D3D;
-	font-family: "Work Sans";
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: normal;
-    
-}
-#idemail, #idpassword {
-	width: 379px;
-	height: 51px;
-	border: none;
-	background: #FFF;
-	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-}
-
-#loginPage button {
-	width: 179px;
+button {
 	height: 36px;
-	margin: 7px 0 28px;
 	border: none;
 	border-radius: 60px;
 	background: #1D6154;
@@ -285,19 +63,44 @@ footer nav ul {
 	text-align: center;
 	font-family: Syne;
 	font-weight: 700;
-
-
 }
 
-#loginPage button:hover {
+button:hover {
 	background: #0E2F28;
 }
 
-#forgotPassword {
-	color: #3D3D3D;
-	font-family: "Work Sans";
-	font-size: 14px;
-	text-decoration-line: underline;
+button:invalid {
+	background: #A7A7A7;
 }
 
+.message {
+	margin: 25px;
+	padding: 16px;
+	border: 1px solid;
+	border-left: 10px solid;
+	border-radius: 15px;
+	font-size: 16px;
+}
 
+.message span{
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.info {
+	color: rgb(77, 77, 255);
+	border-color: rgb(77, 77, 255);
+	background-color: rgb(77, 77, 255, 0.05);
+}
+
+.erreur {
+	color: rgb(200, 0, 0);
+	border-color: rgb(200, 0, 0);
+	background-color: rgb(200, 0, 0, 0.05);
+}
+
+.succes {
+	color: rgb(46, 201, 70);
+	border-color: rgb(46, 201, 70);
+	background-color: rgb(46, 201, 70, 0.05);
+}

@@ -2,24 +2,16 @@
 ////////////////////   affiche la page de connexion   //////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-import { mainElement } from "./const.js";
+import { mainElement, regExp, montrerMessage, envoiAPI } from "./const.js";
 
 
 export const afficheloginPage = () => {
-    console.log(mainElement)
 
     ////////////////   création du formulaire   /////////////////////////////
 
     // on efface le code du <main> 
     mainElement.innerHTML = "";
     mainElement.id = "loginPage";
-
-    // création d'un conteneur pour mom formulaire
-    //const conteneurElement = document.createElement("div");
-    // on y lui attribut un id 
-    // conteneurElement.id = "loginPage";
-    // et on le place dans le <main>
-    //mainElement.appendChild(conteneurElement);
 
     //Création du titre
     const titreElement = document.createElement("h2");
@@ -30,6 +22,8 @@ export const afficheloginPage = () => {
     const formElement = document.createElement("form");
     formElement.id = "loginForm";
     mainElement.appendChild(formElement);
+    // Ecoute l'envoi du formulaire
+    formElement.addEventListener("submit", envoiForm)
 
     // création du sous-Groupe email
     const emailGroupe = document.createElement("div");
@@ -42,13 +36,36 @@ export const afficheloginPage = () => {
     labelEmail.innerText = "E-mail";
     emailGroupe.appendChild(labelEmail);
 
-    // création de label email
+    // création de input email
     const inputEmail = document.createElement("input");
     inputEmail.id = "idemail";
     inputEmail.type = "email";
     inputEmail.name = "inputEmail";
-    inputEmail.required
+    inputEmail.pattern = regExp;
+    inputEmail.required;
     emailGroupe.appendChild(inputEmail);
+    //vérifie email validationEmail
+    inputEmail.addEventListener("input", (e) => {
+        e.preventDefault();
+        //si la valeur saisi est vide
+        if (e.target.value === "") {
+            // enlève les cvlasses "valide", "invalide"
+            e.target.classList.remove("valide", "invalide")
+        } else {
+            //si email est correct
+            if (regExp.test(e.target.value)) {
+                // si .invalide existe alors replace .invalide par valide sinon
+                e.target.classList.contains("invalide") ? e.target.classList.replace("invalide", "valide") :
+                    // si .valide n'existe pas alors ajout .valide sinon rien
+                    (!e.target.classList.contains("valide")) ? e.target.classList.add("valide") : "";
+            } else {
+                // si .valide existe alors replace .valide par invalide sinon
+                e.target.classList.contains("valide") ? e.target.classList.replace("valide", "invalide") :
+                    // si .invalide n'existe pas alors ajout .invalide sinon rien
+                    (!e.target.classList.contains("invalide")) ? e.target.classList.add("invalide") : "";
+            }
+        }
+    });
 
     // création du sous-groupe psswrd
     const psswrdGroupe = document.createElement("div");
@@ -61,14 +78,34 @@ export const afficheloginPage = () => {
     labelPsswrd.innerText = "Mot de passe";
     psswrdGroupe.appendChild(labelPsswrd);
 
-    // création de label email
+    // création de input psswrd
     const inputPsswrd = document.createElement("input");
     inputPsswrd.id = "idpassword";
     inputPsswrd.type = "password";
     inputPsswrd.name = "inputPsswrd";
-    inputPsswrd.required
+    inputPsswrd.required;
     psswrdGroupe.appendChild(inputPsswrd);
-
+    inputPsswrd.addEventListener("input", (e) => {
+        e.preventDefault();
+        //si la valeur saisi est vide
+        if (e.target.value === "") {
+            // enlève les cvlasses "valide", "invalide"
+            e.target.classList.remove("valide", "invalide")
+        } else {
+            // si le mot de passe est trop court
+            if (e.target.value.length < 6) {
+                // si .valide existe alors replace .valide par invalide sinon
+                e.target.classList.contains("valide") ? e.target.classList.replace("valide", "invalide") :
+                    // si .invalide n'existe pas alors ajout .invalide sinon rien
+                    (!e.target.classList.contains("invalide")) ? e.target.classList.add("invalide") : "";
+            } else {
+                // si .invalide existe alors replace .invalide par valide sinon
+                e.target.classList.contains("invalide") ? e.target.classList.replace("invalide", "valide") :
+                    // si .valide n'existe pas alors ajout .valide sinon rien
+                    (!e.target.classList.contains("valide")) ? e.target.classList.add("valide") : "";
+            }
+        }
+    });
 
     // Création d'un bouton 'Se connecter'
     const btnElement = document.createElement("button");
@@ -82,15 +119,51 @@ export const afficheloginPage = () => {
     forgotPsswrdElement.id = "forgotPassword";
     forgotPsswrdElement.innerText = "Mot de passe oublié ?";
     formElement.appendChild(forgotPsswrdElement);
+    forgotPsswrdElement.addEventListener("click", function (event) {
+        event.preventDefault();
+        montrerMessage(messageElement, "Veuillez contacter l'administrateur pour réinitialiser votre mot de passe", "info", 5);
+    });
+
 
     // retour erreur de conformité
     const messageElement = document.createElement("div");
     messageElement.id = "loginPageMessage";
     mainElement.appendChild(messageElement)
-
-
-
-
 }
 
+///////////////////// à la soumission du formulaire /////////////////////////
+const envoiForm = (e) => {
+    // Empêche l'envoi du formulaire par défaut
+    e.preventDefault();
+    let emailValide = e.target.inputEmail.classList.contains("valide");
+    let objetEmail = e.target.inputEmail.value;
+    let psswrdValide = e.target.inputPsswrd.classList.contains("valide");
+    let objetPasseword = e.target.inputPsswrd.value;
 
+    if (!emailValide || !psswrdValide) { montrerMessage(document.getElementById("loginPageMessage"), "Veuillez vérifier si les champs sont correctement remplis", "erreur", 3) };
+    if (emailValide && psswrdValide) {
+        const identifiant = {
+            email: objetEmail,
+            password: objetPasseword
+        };
+
+        const donneeAPI = envoiAPI("/users/login", identifiant);
+
+        donneeAPI.then((donnees) => {
+            if (donnees.statutReponse === 404) {
+                montrerMessage(document.getElementById("loginPageMessage"), "<span>Emai invalide</span><br><br>Veuillez vérifier que votre email est correctement saisi", "erreur", 3);
+            } else if (donnees.statutReponse === 401) {
+                montrerMessage(document.getElementById("loginPageMessage"), "<span>Mot de passe incorrect</span><br><br>Veuillez vérifier que votre email est correctement saisi", "erreur", 3);
+            } else if (donnees.statutReponse === 200) {
+                montrerMessage(document.getElementById("loginPageMessage"), "<span>Connexion réussie</span>", "succes", 1);
+                sessionStorage.setItem("connexion", "true")
+                sessionStorage.setItem("idUtilisateur", donnees.jsonReponse.userId);
+                sessionStorage.setItem("tokenUtilisateur", donnees.jsonReponse.token);
+
+                setTimeout(() => {
+                    window.location.href = "";
+                }, 1000);
+            } else { montrerMessage(document.getElementById("loginPageMessage"), "Une erreur est survenue. Veuillez réessayer ultérieurement.", "erreur", 3) };
+        })
+    }
+}
