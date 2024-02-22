@@ -135,9 +135,10 @@ export const afficheAjout = () => {
 
 const preAffichageImage = (e) => {
     e.preventDefault();
-    if (e.target.files[0].size > 4000000) {
-        let message = document.querySelector(".afficheMessageInputFile")
-        message.innerText = "Fichier supérieur à 4mo !";
+    let message = document.querySelector(".afficheMessageInputFile");
+    const typeFichier = ["image/jpeg", "image/png"];
+    if (e.target.files[0].size > 4000000 || !typeFichier.includes(e.target.files[0].type)) {
+        message.innerText = (e.target.files[0].size > 4000000) ? "Fichier supérieur à 4mo !" : "Fichier incorrect !";
         message.style.color = "red";
         setTimeout(() => {
             message.style = "";
@@ -153,7 +154,6 @@ const preAffichageImage = (e) => {
         document.querySelector(".blockImageAjout").appendChild(image)
     }
 }
-
 
 
 ///////////////////// à la soumission du formulaire /////////////////////////
