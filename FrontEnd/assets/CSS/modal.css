@@ -1,0 +1,182 @@
+/* le fond du Modal */
+#backModal {
+    display: none;
+    position: absolute;
+    z-index: 11;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 600px;
+}
+
+/* Conteneur du modal */
+#backModal .contenantVignette, #backModal .contenantAjout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 630px;
+    border-radius: 10px;
+    background-color: white;
+    margin: 0 auto;
+    padding: 60px 105px 45px 105px;
+    animation: animationzoom 0.6s
+}
+
+@keyframes animationzoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* bouton fermer et retour */
+#backModal .fermerModal, #backModal .retourModal {
+    position: absolute;
+    top: 26px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+#backModal .fermerModal {
+    right: 30px;
+    background-image: url("../icons/icon_fermer.svg") ;
+    width: 24px;
+    height: 24px;
+}
+
+#backModal .retourModal {
+    left: 30px;
+    background-image: url("../icons/icon_retour.svg");
+    width: 21px;
+    height: 21px;
+}
+
+/* Titre */
+#backModal h3 {
+    font-size: 26px;
+    margin-bottom: 46px;
+}
+
+/* vignette */
+#backModal .listeVignette {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 24px 7px;
+}
+
+#backModal .elementVignette {
+    position: relative;
+}
+
+#backModal .elementVignette img {
+	width: 100%;
+}
+
+#backModal .elementVignette div {
+    position: absolute;
+    top: 6px;
+    right: 5px; 
+    width: 17px;
+    height: 17px;
+    background: no-repeat url("../icons/icon_poubelle.svg");
+    cursor: pointer;
+}
+
+#backModal .contenantVignette hr {
+    width: 100%;
+    height: 1px;
+    background: #B3B3B3;
+    margin: 67px 0 38px 0;    
+}
+
+#backModal .contenantVignette button {
+    width: 237px;
+}
+
+/* formulaire ajout */
+#formAjout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* bloc image */
+#formAjout .blockImageAjout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 169px;
+    border-radius: 3px;
+    background-color: #E8F1F6;
+    margin-bottom: 9px;
+}
+
+#formAjout .blockImageAjout .AfficheIconeImage {
+    background-image: url("../icons/icon_image.svg");
+    background-repeat: no-repeat;
+    width: 76px;
+    height: 76px;
+    margin-top: 13px;
+}
+
+#formAjout .blockImageAjout label {
+    width: 173px;
+    height: 36px;
+    border-radius: 50px;
+    background: #CBD6DC;
+    text-align: center;
+    font-weight: 500;
+    line-height: 36px;
+    margin: 6px 0 7px;
+    cursor: pointer;
+}
+
+#formAjout .blockImageAjout .afficheMessageInputFile {
+    height: 12px;
+    line-height: 12px;
+    color: #444;
+    font-size: 10px;
+    margin-bottom: 19px;
+}
+
+#formAjout .blockImageAjout #inputImage {
+    display: none;
+}
+
+#formAjout .blockImageAjout .imagePreAfficher {
+    height: 169px;
+}
+
+
+/* bloc texte */
+
+#formAjout .labelInput {
+    color: #3D3D3D;
+    font-weight: 500;
+    margin: 21px 0 10px 0;
+    
+}
+
+#formAjout #inputText, #formAjout #selectText {
+    height: 51px;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    border: none;
+    color: #444;
+    padding-left: 16px;
+}
+
+#formAjout #selectText {
+   cursor: pointer;
+}
+
+#formAjout hr {
+    margin: 47px 0 32px 0;
+}
+
+#formAjout button {
+    width: 237px;
+    margin-bottom: 10px;
+    align-self: center;
+}

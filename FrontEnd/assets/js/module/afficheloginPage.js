@@ -23,7 +23,7 @@ export const afficheloginPage = () => {
     formElement.id = "loginForm";
     mainElement.appendChild(formElement);
     // Ecoute l'envoi du formulaire
-    formElement.addEventListener("submit", envoiForm)
+    formElement.addEventListener("submit", envoiForm);
 
     // création du sous-Groupe email
     const emailGroupe = document.createElement("div");

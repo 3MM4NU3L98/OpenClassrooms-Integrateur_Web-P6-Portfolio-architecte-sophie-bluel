@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 // importation de valeur
-import { travaux, categoriesTravaux, galeriePortefolio, filtresPortefolio } from "./const.js";
+import { travaux, categoriesTravaux, galeriePortfolio, filtresPortfolio } from "./const.js";
 // importation de la fonction d'affichage de la galerie
 import { afficheGalerie } from "./afficheGalerie.js";
 
@@ -22,7 +22,7 @@ export function afficheHomePage() {
     // on écoute le btn
     btnFiltre0.addEventListener("click", ecouteClick);
     // positionne la balise
-    filtresPortefolio.appendChild(btnFiltre0);
+    filtresPortfolio.appendChild(btnFiltre0);
 
     // et aussi pour chaque btn de la liste categorie 
     categoriesTravaux.forEach(element => {
@@ -31,11 +31,11 @@ export function afficheHomePage() {
         btnFiltre.dataset.categorie = element.id;
         btnFiltre.classList.add("btnFiltre");
         btnFiltre.addEventListener("click", ecouteClick);
-        filtresPortefolio.appendChild(btnFiltre);
+        filtresPortfolio.appendChild(btnFiltre);
     });
 
     ////////////////////   Affiche la galerie complète   ///////////////////////
-    afficheGalerie(travaux, galeriePortefolio)
+    afficheGalerie(travaux, galeriePortfolio)
 
 }
 
@@ -50,7 +50,7 @@ const ecouteClick = (e) => {
     // si idCategorie === 0 alor travauxFiltrer = travaux sinon filtre les traveaux avec idCategorie
     let travauxFiltrer = (idCategorie === 0) ? travaux : travaux.filter(travail => travail.categoryId === idCategorie);
     // affichage des photos
-    afficheGalerie(travauxFiltrer, galeriePortefolio);
+    afficheGalerie(travauxFiltrer, galeriePortfolio);
 }
 
 

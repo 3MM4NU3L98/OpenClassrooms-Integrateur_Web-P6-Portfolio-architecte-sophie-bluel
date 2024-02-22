@@ -12,6 +12,10 @@
 @import './CSS/sect_portfolio.css';
 /* page de connexion */
 @import './CSS/page_connexion.css';
+/* page mode édition */
+@import './CSS/modeEdition.css';
+/* modal */
+@import './CSS/modal.css';
 
 
 body {
@@ -23,6 +27,7 @@ body {
 	background: #FFFEF8;
 	height: 100vh;
 }
+
 main {
 	flex: 1;
 	align-self: center;
@@ -48,6 +53,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 li:hover {
@@ -63,14 +69,16 @@ button {
 	text-align: center;
 	font-family: Syne;
 	font-weight: 700;
+	cursor: pointer;
 }
 
 button:hover {
 	background: #0E2F28;
 }
 
-button:invalid {
+button:disabled {
 	background: #A7A7A7;
+	cursor: default;
 }
 
 .message {
@@ -100,7 +108,7 @@ button:invalid {
 }
 
 .succes {
-	color: rgb(46, 201, 70);
-	border-color: rgb(46, 201, 70);
-	background-color: rgb(46, 201, 70, 0.05);
+	color: rgb(0, 150, 0);
+	border-color: rgb(0, 150, 0);
+	background-color: rgb(0, 150, 0, 0.05);
 }

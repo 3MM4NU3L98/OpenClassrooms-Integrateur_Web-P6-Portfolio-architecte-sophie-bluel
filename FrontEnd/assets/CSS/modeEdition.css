@@ -1,0 +1,42 @@
+#bandeauEdit {
+	display: none;
+    min-height: 59px;
+    background-color: black;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+#bandeauEdit svg {
+    fill: white;
+}
+
+#bandeauEdit span {
+    color: white;
+}
+
+#portfolio .portfolioTitre{
+	position: relative;
+	align-self: center;
+}
+
+#portfolio .portfolioEdit {
+	display: none;
+	gap: 10px;
+	align-items: flex-end;
+	position: absolute;
+	right: -134px;
+	top: 7px;
+	cursor: pointer;
+}
+#portfolio .portfolioEdit svg {
+    fill: black;
+}
+
+#portfolio .portfolioEdit:hover svg {
+	fill: #B1663C;
+}
+
+#portfolio .portfolioEdit:hover span {
+	color: #B1663C;
+}
