@@ -41,6 +41,10 @@ export const afficheAjout = () => {
     ajoutForm.id = "formAjout";
     ajoutForm.enctype = "multipart/form-data";
     ajoutContenant.appendChild(ajoutForm);
+    // Écoute les changemmebt du formulaire pour activer le btn d'envoi
+    ajoutForm.addEventListener("change", () => {
+        ajoutBtn.disabled = (ajoutInputfile.files[0] && ajoutInputText.value && ajoutSelect.value) ? false : true;
+    });
     // Ecoute l'envoi du formulaire
     ajoutForm.addEventListener("submit", envoiAjout);
 
