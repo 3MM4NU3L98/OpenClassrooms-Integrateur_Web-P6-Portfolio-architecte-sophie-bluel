@@ -12,12 +12,6 @@ export const mainElement = document.querySelector("main");
 // Récupération de l'élément du DOM qui accueillera le modal
 export const modalElement = document.getElementById("backModal");
 
-// Récupération de l'élément du DOM qui accueillera le bandeau
-export const modeEditBandeau = document.getElementById("bandeauEdit");
-
-// Récupération de l'élément du DOM que selecttionne le menu login
-export const menuLogin = document.getElementById("log");
-
 // Récupération de l'élément du DOM qui accueillera le lien modal
 export const editPortfolio = document.querySelector(".portfolioEdit");
 

@@ -3,10 +3,23 @@
 	flex-direction: column;
 }
 
+/** début ********* titre de la section *******************/
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+
+
+
+
+
+
+/** fin ***************************************************/
+
+
+
+
 .gallery {
 	width: 100%;
 	display: grid;

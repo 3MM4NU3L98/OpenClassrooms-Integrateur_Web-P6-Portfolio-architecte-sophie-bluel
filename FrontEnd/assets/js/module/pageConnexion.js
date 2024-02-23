@@ -5,7 +5,7 @@
 import { mainElement, regExp, montrerMessage, envoiAPI } from "./const.js";
 
 
-export const afficheloginPage = () => {
+export const pageConnexion = () => {
 
     ////////////////   création du formulaire   /////////////////////////////
 

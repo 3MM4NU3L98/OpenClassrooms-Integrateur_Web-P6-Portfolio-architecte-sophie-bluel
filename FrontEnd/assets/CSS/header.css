@@ -27,6 +27,7 @@ h1 > span {
 	letter-spacing: 0.1em;
 }
 
+/** début ***   style de bandeau 'Mode édition'   *****************/
 #bandeauEdit {
 	display: none;
     min-height: 59px;
@@ -36,3 +37,12 @@ h1 > span {
     align-items: center;
 	width: 100%;
 }
+
+#bandeauEdit svg {
+    fill: white;
+}
+
+#bandeauEdit span {
+    color: white;
+}
+/** fin *****   style de bandeau 'Mode édition'   *****************/
