@@ -123,7 +123,7 @@ export const afficheAjout = () => {
     // création d'une séparation
     ajoutForm.appendChild(document.createElement("hr"));
 
-    // Création d'un bouton 'Se connecter'
+    // Création d'un bouton 'valider'
     const ajoutBtn = document.createElement("button");
     ajoutBtn.type = "submit";
     ajoutBtn.innerHTML = "Valider";

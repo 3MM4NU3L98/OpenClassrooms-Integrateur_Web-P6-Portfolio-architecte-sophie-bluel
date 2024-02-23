@@ -1,4 +1,9 @@
 header {
+	display: flex;
+	flex-direction: column;
+}
+
+#header {
 	max-width: 1140px;
 	width: 100%;
 	align-self: center;
@@ -22,3 +27,12 @@ h1 > span {
 	letter-spacing: 0.1em;
 }
 
+#bandeauEdit {
+	display: none;
+    min-height: 59px;
+    background-color: black;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+	width: 100%;
+}
