@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 // importation de valeur
-import { travaux, categoriesTravaux, galeriePortfolio, filtresPortfolio } from "./const.js";
+import { travaux, categoriesTravaux, galeriePortfolio, filtresPortfolio } from "../const.js";
 // importation de la fonction d'affichage de la galerie
 import { afficheGalerie } from "./afficheGalerie.js";
 

@@ -2,8 +2,8 @@
 //////////////   affiche la modal pour l'ajout d'un travail   //////////////
 ////////////////////////////////////////////////////////////////////////////
 
-import { modalElement, categoriesTravaux } from "./const.js";
-import { afficheModal } from "./afficheModal.js";
+import { modalElement, categoriesTravaux } from "../const.js";
+import { modal } from "../modal.js";
 
 export const afficheAjout = () => {
 
@@ -28,7 +28,7 @@ export const afficheAjout = () => {
     btnRetour.classList.add("retourModal");
     ajoutContenant.appendChild(btnRetour)
     // quand l'utilsateur clicke sur la x, ça ferme le modal
-    btnRetour.addEventListener("click", () => { afficheModal() });
+    btnRetour.addEventListener("click", () => { modal() });
 
     // création du titre
     const ajoutTitre = document.createElement("h3");

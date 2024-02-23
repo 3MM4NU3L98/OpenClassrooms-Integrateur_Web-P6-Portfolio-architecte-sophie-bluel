@@ -12,9 +12,6 @@ export const mainElement = document.querySelector("main");
 // Récupération de l'élément du DOM qui accueillera le modal
 export const modalElement = document.getElementById("backModal");
 
-// Récupération de l'élément du DOM qui accueillera le lien modal
-export const editPortfolio = document.querySelector(".portfolioEdit");
-
 // Récupération de l'élément du DOM qui accueillera la galerie
 export const galeriePortfolio = document.querySelector(".gallery");
 

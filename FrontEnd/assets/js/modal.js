@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////
-//////////////////////////   affiche la modal   ////////////////////////////
+//////////////////////////   affiche le modal   ////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
 import { modalElement, travaux } from "./const.js";
-import { afficheAjout } from "./afficheModal_ajout.js";
+import { afficheAjout } from "./module/afficheModal_ajout.js";
 
 
-export const afficheModal = () => {
+export const modal = () => {
     modalElement.innerHTML = ""
     // rendre visible le modal
     modalElement.style.display = "block";

@@ -9,13 +9,32 @@
 	margin-bottom: 1em;
 }
 
+#portfolio .portfolioTitre{
+	position: relative;
+	align-self: center;
+}
 
+#portfolio .portfolioEdition {
+	display: none;
+	gap: 10px;
+	align-items: flex-end;
+	position: absolute;
+	right: -134px;
+	top: 7px;
+	cursor: pointer;
+}
+#portfolio .portfolioEdition svg {
+    fill: black;
+}
 
+#portfolio .portfolioEdition:hover svg {
+	fill: #B1663C;
+}
 
-
-
-
-/** fin ***************************************************/
+#portfolio .portfolioEdition:hover span {
+	color: #B1663C;
+}
+/** fin ************** titre de la section *********************/
 
 
 
