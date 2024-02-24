@@ -1,5 +1,7 @@
 // Serveur de l'API
 export const host = "http://localhost:5678/api";
+
+
 // Récupération des travaux depuis l'API en JSON
 export const travaux = await fetch(`${host}/works`).then(travaux => travaux.json());
 // Récupération des catégories de travaux depuis l'API en JSON
@@ -12,11 +14,6 @@ export const mainElement = document.querySelector("main");
 // Récupération de l'élément du DOM qui accueillera le modal
 export const modalElement = document.getElementById("backModal");
 
-// Récupération de l'élément du DOM qui accueillera la galerie
-export const galeriePortfolio = document.querySelector(".gallery");
-
-// Récupération de l'élément du DOM qui accueillera le choix du filtre
-export const filtresPortfolio = document.getElementById("filtres");
 
 
 // Regular Expression Pattern

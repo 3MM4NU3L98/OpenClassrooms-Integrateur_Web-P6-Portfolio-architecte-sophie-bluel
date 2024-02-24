@@ -37,22 +37,7 @@
 /** fin ************** titre de la section *********************/
 
 
-
-
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-}
-
-.gallery img {
-	width: 100%;
-}
-
-/* style des btnFiltres */
-
+/** début ************ style des btnFiltres *********************/
 #filtres {
 	display: flex;
 	flex-direction: row;
@@ -78,5 +63,20 @@
 #filtres .active {
 	background: #1D6154;
 	color: #FFF;
-	
 }
+/** fin ************** style des btnFiltres *********************/
+
+
+/** début ************* style de la galerie *********************/
+#portfolio .gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+#portfolio .gallery img {
+	width: 100%;
+}
+/** fin *************** style de la galerie *********************/

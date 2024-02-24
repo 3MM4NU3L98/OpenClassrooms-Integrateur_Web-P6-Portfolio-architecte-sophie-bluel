@@ -1,10 +1,8 @@
-import { iconEdit } from "./js/const.js";
+import { iconEdit, travaux } from "./js/const.js";
 import { pageConnexion } from "./js/pageConnexion.js";
 import { modal } from "./js/modal.js";
-
-
-import { afficheHomePage_edit } from "./js/module/afficheHomePage_edit.js";
-import { afficheHomePage } from "./js/module/afficheHomePage.js";
+import { obtenirTravauxAPI, afficheGalerie } from "./js/fonction.js";
+import { filtresFolio } from "./js/filtresPortfolio.js"
 
 /*
 ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -51,42 +49,25 @@ logInOut.addEventListener("click", () => {
 
 /////////////////   modification du titre 'Mes projets'   \\\\\\\\\\\\\\\\\\\\
 //\\\\\\\\\\\\\\\              en mode édition            ////////////////////
-// Récupération de l'élément du DOM qui accueillera le lien vers le modal
-const editionPortfolio = document.querySelector(".portfolioEdition");
-// activation en CSS de la balise
-editionPortfolio.style.display = "flex";
-// On écoute le click de editionPortfolio, au click, on lance la modal
-editionPortfolio.addEventListener("click", modal);
-// intégration de l'icone Édition en SVG
-editionPortfolio.innerHTML = iconEdit;
-// Création d'une balise <span>
-const editSpan = document.createElement("span");
-editSpan.innerText = "modifier";
-editionPortfolio.appendChild(editSpan);
-
+if (Boolean(sessionStorage.getItem("connexion"))) {
+    // Récupération de l'élément du DOM qui accueillera le lien vers le modal
+    const editionPortfolio = document.querySelector(".portfolioEdition");
+    // activation en CSS de la balise
+    editionPortfolio.style.display = "flex";
+    // On écoute le click de editionPortfolio, au click, on lance la modal
+    editionPortfolio.addEventListener("click", modal);
+    // intégration de l'icone Édition en SVG
+    editionPortfolio.innerHTML = iconEdit;
+    // Création d'une balise <span>
+    const editSpan = document.createElement("span");
+    editSpan.innerText = "modifier";
+    editionPortfolio.appendChild(editSpan);
+};
 
 ///////////////////////////   affichage des filtres   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//\\\\\\\\\\\\\\\\\\\\\\\\\    du mode d'affichage    ///////////////////////////////
-if (!Boolean(sessionStorage.getItem("connexion"))) { console.log(Boolean(sessionStorage.getItem("connexion"))) };
-
+//\\\\\\\\\\\\\\\\\\\\\\\\\      du mode normal       ///////////////////////////////
+if (!Boolean(sessionStorage.getItem("connexion"))) { filtresFolio(); };
 
 /////////////////////////   affichage la galerie photo   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //\\\\\\\\\\\\\\\\\\\\\\\ correspondant à chaque travail /////////////////////////////
-
-
-
-
-
-
-
-// affiche la page d'accueil
-
-(Boolean(sessionStorage.getItem("connexion"))) ? afficheHomePage_edit() : afficheHomePage();
-
-
-
-
-
-
-
-
+obtenirTravauxAPI().then(travaux => afficheGalerie(travaux));

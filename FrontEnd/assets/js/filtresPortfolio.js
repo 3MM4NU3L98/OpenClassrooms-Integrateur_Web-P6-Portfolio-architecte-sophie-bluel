@@ -1,14 +1,14 @@
-////////////////////////////////////////////////////////////////////////////
-//////////////////////   affiche la page d'accueil   ///////////////////////
-////////////////////////////////////////////////////////////////////////////
+import { travaux, categoriesTravaux } from "./const.js";
+import { afficheGalerie } from "./fonction.js";
+/*
+///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+||||||||||   affiche la parit avec les filtres de la page d'accueil   ||||||||||
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////
+*/
+export const filtresFolio = () => {
 
-// importation de valeur
-import { travaux, categoriesTravaux, galeriePortfolio, filtresPortfolio } from "../const.js";
-// importation de la fonction d'affichage de la galerie
-import { afficheGalerie } from "./afficheGalerie.js";
-
-/////////////////    fonction qui affiche la page d'accueil   ///////////////
-export function afficheHomePage() {
+    // Récupération de l'élément du DOM qui accueillera le choix du filtre
+    const filtresPortfolio = document.getElementById("filtres");
 
     ////////////// Création des boutons permettant de filter  /////////////// 
     // création de la balise div
@@ -19,10 +19,10 @@ export function afficheHomePage() {
     btnFiltre0.dataset.categorie = 0;
     // ajout des classes à la balise
     btnFiltre0.classList.add("btnFiltre", "active");
-    // on écoute le btn
-    btnFiltre0.addEventListener("click", ecouteClick);
     // positionne la balise
     filtresPortfolio.appendChild(btnFiltre0);
+    // on écoute le btn
+    btnFiltre0.addEventListener("click", ecouteClick);
 
     // et aussi pour chaque btn de la liste categorie 
     categoriesTravaux.forEach(element => {
@@ -30,13 +30,9 @@ export function afficheHomePage() {
         btnFiltre.innerText = element.name;
         btnFiltre.dataset.categorie = element.id;
         btnFiltre.classList.add("btnFiltre");
-        btnFiltre.addEventListener("click", ecouteClick);
         filtresPortfolio.appendChild(btnFiltre);
+        btnFiltre.addEventListener("click", ecouteClick);
     });
-
-    ////////////////////   Affiche la galerie complète   ///////////////////////
-    afficheGalerie(travaux, galeriePortfolio)
-
 }
 
 ///////////////////////// Sur un click d'un des btn //////////////////////////////
@@ -50,8 +46,10 @@ const ecouteClick = (e) => {
     // si idCategorie === 0 alor travauxFiltrer = travaux sinon filtre les traveaux avec idCategorie
     let travauxFiltrer = (idCategorie === 0) ? travaux : travaux.filter(travail => travail.categoryId === idCategorie);
     // affichage des photos
-    afficheGalerie(travauxFiltrer, galeriePortfolio);
+    afficheGalerie(travauxFiltrer);
 }
+
+
 
 
 
