@@ -11,7 +11,7 @@ export const obtenirTravauxAPI = async () => {
 
 
 //////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//|||||||||   fonction de récupération de données de l' API   ||||||||||||
+//|||||||||||||||   fonction d'affichage de la galerie   |||||||||||||||||
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////
 /*  Pour chaque élément de 'galerie' est codé comme ci-dessous
 <figure>
@@ -47,14 +47,6 @@ export function afficheGalerie(galerie) {
         figureElement.appendChild(figcaptionElement);
 
     });
-
 }
-
-
-
-
-
-
-
 
 

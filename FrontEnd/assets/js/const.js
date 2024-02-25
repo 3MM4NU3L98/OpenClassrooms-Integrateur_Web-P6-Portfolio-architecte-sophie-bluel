@@ -8,14 +8,6 @@ export const travaux = await fetch(`${host}/works`).then(travaux => travaux.json
 export const categoriesTravaux = await fetch(`${host}/categories`).then(categoriesTravaux => categoriesTravaux.json());
 
 
-// Récupération de l'élément du DOM que selecttionne le main
-export const mainElement = document.querySelector("main");
-
-// Récupération de l'élément du DOM qui accueillera le modal
-export const modalElement = document.getElementById("backModal");
-
-
-
 // Regular Expression Pattern
 export const regExp = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
 

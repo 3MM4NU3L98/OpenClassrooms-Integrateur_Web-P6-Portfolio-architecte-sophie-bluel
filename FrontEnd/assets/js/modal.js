@@ -2,16 +2,18 @@
 //////////////////////////   affiche le modal   ////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-import { modalElement, travaux } from "./const.js";
-import { afficheAjout } from "./module/afficheModal_ajout.js";
+import { obtenirTravauxAPI } from "./fonction.js";
+import { modalAjout } from "./modal_ajout.js";
 
 
 export const modal = () => {
+    // Récupération de l'élément du DOM qui accueillera le modal
+    const modalElement = document.getElementById("backModal");
     modalElement.innerHTML = ""
     // rendre visible le modal
     modalElement.style.display = "block";
     // quand l'utilsateur clicke n'importe où en dehors du modal, ça le ferme
-    window.addEventListener("click", (e) => { (e.target === modalElement) ? document.location.href = "" : "" });
+    window.addEventListener("click", (e) => { (e.target === modalElement) ? modalElement.style.display = "none" : "" });
 
     // création du contenant du modal
     const vignetteContenant = document.createElement("div");
@@ -23,37 +25,20 @@ export const modal = () => {
     btnFermer.classList.add("fermerModal");
     vignetteContenant.appendChild(btnFermer)
     // quand l'utilsateur clicke sur la x, ça ferme le modal
-    btnFermer.addEventListener("click", () => { document.location.href = "" });
+    btnFermer.addEventListener("click", () => { modalElement.style.display = "none" });
 
     // création du titre
     const vignetteTitre = document.createElement("h3");
     vignetteTitre.innerText = "Galerie photo";
     vignetteContenant.appendChild(vignetteTitre);
 
-    // création des vignette des travaux
+    // création d'un conteneur à vignettes
     const vignetteListe = document.createElement("div");
     vignetteListe.classList.add("listeVignette");
     vignetteContenant.appendChild(vignetteListe);
-    // pour chaque travaux
-    travaux.forEach(travauxElement => {
 
-        // création d'un conteneur
-        const vignetteElement = document.createElement("div");
-        vignetteElement.classList.add("elementVignette")
-        vignetteListe.appendChild(vignetteElement);
-
-        // création de la balse img et assigne les attributs src et alt
-        const imageElement = document.createElement("img");
-        imageElement.src = travauxElement.imageUrl;
-        imageElement.alt = travauxElement.title;
-        vignetteElement.appendChild(imageElement);
-
-        // creation de l'icône poubelle
-        const poubelleElement = document.createElement("div");
-        poubelleElement.dataset.travail = travauxElement.id;
-        vignetteElement.appendChild(poubelleElement);
-        poubelleElement.addEventListener("click", effacerTravail);
-    });
+    // affiche les vignettes des travaux
+    obtenirTravauxAPI().then(travaux => afficheVignettes(travaux));
 
     // création d'une séparation
     vignetteContenant.appendChild(document.createElement("hr"));
@@ -62,9 +47,38 @@ export const modal = () => {
     const vignetteBtn = document.createElement("button");
     vignetteBtn.innerText = "Ajouter une photo";
     vignetteContenant.appendChild(vignetteBtn);
-    vignetteBtn.addEventListener("click", afficheAjout);
+    vignetteBtn.addEventListener("click", modalAjout);
+}
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//|||||||||||||||   fonction d'affichage des vignettes   |||||||||||||||||
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////
+
+const afficheVignettes = (listeVignettes) => {
+
+    listeVignettes.forEach(vignette => {
+
+        // création d'un conteneur
+        const vignetteElement = document.createElement("div");
+        vignetteElement.classList.add("elementVignette")
+        document.querySelector(".listeVignette").appendChild(vignetteElement);
+
+        // création de la balse img et assigne les attributs src et alt
+        const imageElement = document.createElement("img");
+        imageElement.src = vignette.imageUrl;
+        imageElement.alt = vignette.title;
+        vignetteElement.appendChild(imageElement);
+
+        // creation de l'icône poubelle
+        const poubelleElement = document.createElement("div");
+        poubelleElement.dataset.travail = vignette.id;
+        vignetteElement.appendChild(poubelleElement);
+        poubelleElement.addEventListener("click", effacerTravail);
+    });
 }
 
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//|||||||||||||||   fonction d'affichage des vignettes   |||||||||||||||||
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////
 const effacerTravail = (e) => {
     let idTravail = e.target.dataset.travail
     console.log(idTravail)

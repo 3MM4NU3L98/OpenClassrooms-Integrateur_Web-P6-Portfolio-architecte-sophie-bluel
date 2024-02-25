@@ -2,7 +2,10 @@
 ////////////////////   affiche la page de connexion   //////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-import { mainElement, regExp, montrerMessage, envoiAPI } from "./const.js";
+import { regExp, montrerMessage, envoiAPI } from "./const.js";
+
+// Récupération de l'élément du DOM que selecttionne le main
+const mainElement = document.querySelector("main");
 
 
 export const pageConnexion = () => {

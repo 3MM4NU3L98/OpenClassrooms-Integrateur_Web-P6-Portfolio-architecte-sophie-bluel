@@ -2,11 +2,12 @@
 //////////////   affiche la modal pour l'ajout d'un travail   //////////////
 ////////////////////////////////////////////////////////////////////////////
 
-import { modalElement, categoriesTravaux } from "../const.js";
-import { modal } from "../modal.js";
+import { categoriesTravaux } from "./const.js";
+import { modal } from "./modal.js";
 
-export const afficheAjout = () => {
-
+export const modalAjout = () => {
+    // Récupération de l'élément du DOM qui accueillera le modal
+    const modalElement = document.getElementById("backModal");
     modalElement.innerHTML = ""
     // rendre visible le modal
     modalElement.style.display = "block";
@@ -21,9 +22,9 @@ export const afficheAjout = () => {
     btnFermer.classList.add("fermerModal");
     ajoutContenant.appendChild(btnFermer)
     // quand l'utilsateur clicke sur la x, ça ferme le modal
-    btnFermer.addEventListener("click", () => { document.location.href = "" });
+    btnFermer.addEventListener("click", () => { modalElement.style.display = "none" });
 
-    // Création du bouton de fermeture
+    // Création du bouton de retour
     const btnRetour = document.createElement("div");
     btnRetour.classList.add("retourModal");
     ajoutContenant.appendChild(btnRetour)
@@ -88,7 +89,7 @@ export const afficheAjout = () => {
     ajoutLabelInputText.classList.add("labelInput");
     ajoutForm.appendChild(ajoutLabelInputText);
 
-    // ajout input type Text
+    // ajout input type=Text
     const ajoutInputText = document.createElement("input");
     ajoutInputText.type = "text";
     ajoutInputText.id = "inputText";
@@ -96,14 +97,14 @@ export const afficheAjout = () => {
     ajoutInputText.required;
     ajoutForm.appendChild(ajoutInputText);
 
-    // ajout du label pour l'input type=text
+    // ajout du label pour <select>
     const ajoutLabelSelect = document.createElement("label");
     ajoutLabelSelect.setAttribute("for", "selectText");
     ajoutLabelSelect.innerText = "Catégorie";
     ajoutLabelSelect.classList.add("labelInput");
     ajoutForm.appendChild(ajoutLabelSelect);
 
-    // ajout input type Text
+    // ajout <select>
     const ajoutSelect = document.createElement("select");
     ajoutSelect.id = "selectText";
     ajoutSelect.name = "selectText";
