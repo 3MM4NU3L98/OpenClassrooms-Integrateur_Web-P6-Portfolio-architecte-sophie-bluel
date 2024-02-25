@@ -60,6 +60,8 @@
 /* vignette */
 #backModal .listeVignette {
 	width: 100%;
+    max-height: 355px;
+    overflow-y: auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	gap: 24px 7px;

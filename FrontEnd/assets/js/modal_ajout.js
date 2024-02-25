@@ -2,7 +2,8 @@
 //////////////   affiche la modal pour l'ajout d'un travail   //////////////
 ////////////////////////////////////////////////////////////////////////////
 
-import { categoriesTravaux } from "./const.js";
+import { categoriesTravaux, host } from "./const.js";
+import { obtenirTravauxAPI, afficheGalerie } from "./fonction.js";
 import { modal } from "./modal.js";
 
 export const modalAjout = () => {
@@ -160,5 +161,28 @@ const preAffichageImage = (e) => {
 ///////////////////// à la soumission du formulaire /////////////////////////
 const envoiAjout = (e) => {
     e.preventDefault();
-    console.log(e.target)
+
+    let formData = new FormData();
+    formData.append("image", e.target.inputImage.files[0]);
+    formData.append("title", e.target.inputText.value);
+    formData.append("category", e.target.selectText.value);
+
+    fetch(`${host}/works`, {
+        method: 'POST',
+        headers: { "Authorization": `Bearer ${sessionStorage.getItem("tokenUtilisateur")}` },
+        body: formData
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur lors de l\'envoi de l\'image.');
+            }
+            return response.json();
+        })
+        .then(() => {
+            obtenirTravauxAPI().then(travaux => afficheGalerie(travaux));
+            modal();
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+        });
 }
