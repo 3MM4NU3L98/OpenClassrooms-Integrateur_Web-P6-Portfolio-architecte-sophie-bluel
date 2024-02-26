@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////
 //////////////////////////   affiche le modal   ////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-
-import { obtenirTravauxAPI } from "./fonction.js";
+import { host } from "./const.js";
+import { obtenirTravauxAPI, afficheGalerie } from "./fonction.js";
 import { modalAjout } from "./modal_ajout.js";
 
 
@@ -54,9 +54,8 @@ export const modal = () => {
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////
 
 const afficheVignettes = (listeVignettes) => {
-
+    document.querySelector(".listeVignette").innerHTML = "";
     listeVignettes.forEach(vignette => {
-
         // création d'un conteneur
         const vignetteElement = document.createElement("div");
         vignetteElement.classList.add("elementVignette")
@@ -77,9 +76,30 @@ const afficheVignettes = (listeVignettes) => {
 }
 
 //////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//|||||||||||||||   fonction d'affichage des vignettes   |||||||||||||||||
+//|||||||||||||||   fonction d'effacement des travaux   ||||||||||||||||||
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////
 const effacerTravail = (e) => {
-    let idTravail = e.target.dataset.travail
-    console.log(idTravail)
+    fetch(`${host}/works/${e.target.dataset.travail}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem("tokenUtilisateur")}`
+        }
+
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erreur lors de l\'envoi de l\'image.");
+            }
+            return response;
+        })
+        .then(() => {
+            obtenirTravauxAPI().then(travaux => {
+                afficheGalerie(travaux);
+                afficheVignettes(travaux);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+        });
 }

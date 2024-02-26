@@ -174,7 +174,7 @@ const envoiAjout = (e) => {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erreur lors de l\'envoi de l\'image.');
+                throw new Error("Erreur lors de l\'envoi de l\'image.");
             }
             return response.json();
         })
