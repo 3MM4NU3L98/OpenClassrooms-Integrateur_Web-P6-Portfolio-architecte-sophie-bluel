@@ -50,3 +50,15 @@ export function afficheGalerie(galerie) {
 }
 
 
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//||||||||||||   permet d'afficher un message paramètrable   |||||||||||||
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////
+export const montrerMessage = (emplacement, message, type, duree) => {
+    emplacement.classList.add("message", type);
+    emplacement.innerHTML = message;
+    // Clear message after 3 seconds
+    setTimeout(function () {
+        emplacement.innerHTML = "";
+        emplacement.classList.remove("message", type);
+    }, duree * 1000);
+}

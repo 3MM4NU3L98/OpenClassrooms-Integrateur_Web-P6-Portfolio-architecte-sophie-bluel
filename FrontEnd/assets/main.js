@@ -1,4 +1,4 @@
-import { iconEdit, travaux } from "./js/const.js";
+import { iconEdit } from "./js/const.js";
 import { pageConnexion } from "./js/pageConnexion.js";
 import { modal } from "./js/modal.js";
 import { obtenirTravauxAPI, afficheGalerie } from "./js/fonction.js";

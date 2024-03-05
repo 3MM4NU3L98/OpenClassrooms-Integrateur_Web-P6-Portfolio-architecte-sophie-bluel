@@ -12,43 +12,6 @@ export const categoriesTravaux = await fetch(`${host}/categories`).then(categori
 export const regExp = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
 
 
-// permet d'afficher un message paramètrable
-export const montrerMessage = (emplacement, message, type, duree) => {
-    emplacement.classList.add("message", type);
-    emplacement.innerHTML = message;
-    // Clear message after 3 seconds
-    setTimeout(function () {
-        emplacement.innerHTML = "";
-        emplacement.classList.remove("message", type);
-    }, duree * 1000);
-}
-
-
-// envoie une requête POST avec Fetch
-export const envoiAPI = async (cible, chargeUtile) => {
-    // Configuration de la requête
-    const requeteOptions = {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(chargeUtile)
-    };
-    // envoi une requête réseaux via l'API Fetch et attend la réponse grace au mot clés await
-    const reponse = await fetch(`${host}${cible}`, requeteOptions);
-
-    // attend la convertion du corps de la réponse en JSON grace au mot clés await
-    const donneeRetour = await reponse.json();
-    const donneeBrut = (reponse.ok) ? donneeRetour : "";
-
-    // creation de l'objet a retourné
-    const donneePretEnvoyer = {
-        statutReponse: reponse.status,
-        statutTexteReponse: reponse.statusText,
-        jsonReponse: donneeBrut,
-    }
-    return donneePretEnvoyer;
-}
-
-
 // icone édition
 export const iconEdit = `
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">

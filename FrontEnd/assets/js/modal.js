@@ -79,27 +79,28 @@ const afficheVignettes = (listeVignettes) => {
 //|||||||||||||||   fonction d'effacement des travaux   ||||||||||||||||||
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////
 const effacerTravail = (e) => {
-    fetch(`${host}/works/${e.target.dataset.travail}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem("tokenUtilisateur")}`
-        }
-
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erreur lors de l\'effacement du travail.");
+    if (confirm("Voulez-vous le supprimer?") === true) {
+        fetch(`${host}/works/${e.target.dataset.travail}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem("tokenUtilisateur")}`
             }
-            return response;
         })
-        .then(() => {
-            obtenirTravauxAPI().then(travaux => {
-                afficheGalerie(travaux);
-                afficheVignettes(travaux);
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erreur lors de l\'effacement du travail.");
+                }
+                return response;
+            })
+            .then(() => {
+                obtenirTravauxAPI().then(travaux => {
+                    afficheGalerie(travaux);
+                    afficheVignettes(travaux);
+                });
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
             });
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-        });
+    }
 }

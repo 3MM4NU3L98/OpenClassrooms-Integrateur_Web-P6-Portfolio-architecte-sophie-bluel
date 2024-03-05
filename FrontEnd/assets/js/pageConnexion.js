@@ -2,7 +2,8 @@
 ////////////////////   affiche la page de connexion   //////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-import { regExp, montrerMessage, envoiAPI } from "./const.js";
+import { regExp, host } from "./const.js";
+import { montrerMessage } from "./fonction.js";
 
 // Récupération de l'élément du DOM que selecttionne le main
 const mainElement = document.querySelector("main");
@@ -143,12 +144,17 @@ const envoiForm = (e) => {
     let psswrdValide = e.target.inputPsswrd.classList.contains("valide");
     let objetPasseword = e.target.inputPsswrd.value;
 
+    // vérifie si l'email et le mot de passa est valide, sinon envoie un message d'erreur
     if (!emailValide || !psswrdValide) { montrerMessage(document.getElementById("loginPageMessage"), "Veuillez vérifier si les champs sont correctement remplis", "erreur", 3) };
+    // si tout est valide alors on procède à l'envoi vers l'API 
     if (emailValide && psswrdValide) {
+        // création de la charge utile
         const identifiant = {
             email: objetEmail,
             password: objetPasseword
         };
+
+        //envoie à l'API
 
         const donneeAPI = envoiAPI("/users/login", identifiant);
 
@@ -170,3 +176,29 @@ const envoiForm = (e) => {
         })
     }
 }
+
+
+// envoie une requête POST avec Fetch
+const envoiAPI = async (cible, chargeUtile) => {
+    // Configuration de la requête
+    const requeteOptions = {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(chargeUtile)
+    };
+    // envoi une requête réseaux via l'API Fetch et attend la réponse grace au mot clés await
+    const reponse = await fetch(`${host}${cible}`, requeteOptions);
+
+    // attend la convertion du corps de la réponse en JSON grace au mot clés await
+    const donneeRetour = await reponse.json();
+    const donneeBrut = (reponse.ok) ? donneeRetour : "";
+
+    // creation de l'objet a retourné
+    const donneePretEnvoyer = {
+        statutReponse: reponse.status,
+        statutTexteReponse: reponse.statusText,
+        jsonReponse: donneeBrut,
+    }
+    return donneePretEnvoyer;
+}
+
