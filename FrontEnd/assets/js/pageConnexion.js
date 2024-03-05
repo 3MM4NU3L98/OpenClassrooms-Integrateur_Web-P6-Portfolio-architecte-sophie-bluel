@@ -53,7 +53,7 @@ export const pageConnexion = () => {
         e.preventDefault();
         //si la valeur saisi est vide
         if (e.target.value === "") {
-            // enlève les cvlasses "valide", "invalide"
+            // enlève les classes "valide", "invalide"
             e.target.classList.remove("valide", "invalide")
         } else {
             //si email est correct
