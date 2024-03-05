@@ -154,51 +154,34 @@ const envoiForm = (e) => {
             password: objetPasseword
         };
 
-        //envoie à l'API
-
-        const donneeAPI = envoiAPI("/users/login", identifiant);
-
-        donneeAPI.then((donnees) => {
-            if (donnees.statutReponse === 404) {
-                montrerMessage(document.getElementById("loginPageMessage"), "<span>Emai invalide</span><br><br>Veuillez vérifier que votre email est correctement saisi", "erreur", 3);
-            } else if (donnees.statutReponse === 401) {
-                montrerMessage(document.getElementById("loginPageMessage"), "<span>Mot de passe incorrect</span><br><br>Veuillez vérifier que votre email est correctement saisi", "erreur", 3);
-            } else if (donnees.statutReponse === 200) {
-                montrerMessage(document.getElementById("loginPageMessage"), "<span>Connexion réussie</span>", "succes", 1);
-                sessionStorage.setItem("connexion", "true")
-                sessionStorage.setItem("idUtilisateur", donnees.jsonReponse.userId);
-                sessionStorage.setItem("tokenUtilisateur", donnees.jsonReponse.token);
-
-                setTimeout(() => {
-                    window.location.href = "";
-                }, 1000);
-            } else { montrerMessage(document.getElementById("loginPageMessage"), "Une erreur est survenue. Veuillez réessayer ultérieurement.", "erreur", 3) };
+        fetch(`${host}/users/login`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(identifiant)
         })
-    }
-}
+            .then(reponse => {
 
-
-// envoie une requête POST avec Fetch
-const envoiAPI = async (cible, chargeUtile) => {
-    // Configuration de la requête
-    const requeteOptions = {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(chargeUtile)
+                //gestion de l'erreur 404 'erreur d'email'
+                if (reponse.status === 404) {
+                    montrerMessage(document.getElementById("loginPageMessage"), "<span>Emai invalide</span><br><br>Veuillez vérifier que votre email est correctement saisi", "erreur", 3);
+                }
+                //gestion de l'erreur 401 'erreur de mot de passe'
+                else if (reponse.status === 401) {
+                    montrerMessage(document.getElementById("loginPageMessage"), "<span>Mot de passe incorrect</span><br><br>Veuillez vérifier que votre email est correctement saisi", "erreur", 3);
+                }
+                // connexion réussi, récupération de l'idUtilisateur et de son token
+                else if (reponse.status === 200) {
+                    montrerMessage(document.getElementById("loginPageMessage"), "<span>Connexion réussie</span>", "succes", 1);
+                    sessionStorage.setItem("connexion", "true");
+                    reponse = reponse.json();
+                    reponse.then(reponse => {
+                        sessionStorage.setItem("idUtilisateur", reponse.userId);
+                        sessionStorage.setItem("tokenUtilisateur", reponse.token);
+                    })
+                    setTimeout(() => {
+                        window.location.href = "";
+                    }, 1000);
+                } else { montrerMessage(document.getElementById("loginPageMessage"), "Une erreur est survenue. Veuillez réessayer ultérieurement.", "erreur", 3) };
+            });
     };
-    // envoi une requête réseaux via l'API Fetch et attend la réponse grace au mot clés await
-    const reponse = await fetch(`${host}${cible}`, requeteOptions);
-
-    // attend la convertion du corps de la réponse en JSON grace au mot clés await
-    const donneeRetour = await reponse.json();
-    const donneeBrut = (reponse.ok) ? donneeRetour : "";
-
-    // creation de l'objet a retourné
-    const donneePretEnvoyer = {
-        statutReponse: reponse.status,
-        statutTexteReponse: reponse.statusText,
-        jsonReponse: donneeBrut,
-    }
-    return donneePretEnvoyer;
 }
-
